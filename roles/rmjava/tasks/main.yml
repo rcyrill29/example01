@@ -1,0 +1,6 @@
+- name: Remove Java1.8
+  yum:
+    name: 
+    - java-1.8*
+    - jdk1.8*
+    state: absent

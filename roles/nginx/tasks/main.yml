@@ -1,0 +1,24 @@
+- name: Add nginx repo
+  yum_repository:
+    name: nginx
+    description: nginx stable repo
+    state: present
+    baseurl: "http://nginx.org/packages/centos/$releasever/$basearch/"
+    gpgkey: http://nginx.org/keys/nginx_signing.key
+    gpgcheck: yes
+    enabled: yes
+    
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: present
+    update_cache: yes
+      
+- name: Enable and Start nginx
+  systemd:
+    name: nginx.service
+    enabled: yes
+    state: started
+      
+- name: Create index.html file
+  template: src=index.html.j2 dest=/usr/share/nginx/html/index.html

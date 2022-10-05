@@ -1,0 +1,11 @@
+- hosts:
+     - all
+  become: yes
+  gather_facts: true
+  roles:
+     # Удаляем Java
+     - rmjava
+     # Устанавливаем Java
+     - instjava
+     # Устанавливаем nginx
+     - nginx

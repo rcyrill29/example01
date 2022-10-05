@@ -1,0 +1,15 @@
+- name: Create directory /usr/java 
+  file:
+    path: /usr/java
+    state: directory
+- name: Get Java
+  unarchive:
+    src: https://download.java.net/java/GA/jdk17/0d483333a00540d886896bac774ff48b/35/GPL/openjdk-17_linux-x64_bin.tar.gz
+    dest: /usr/java/
+    remote_src: yes
+  tags: download,unpack
+- name: Add Java bin dir to $PATH.
+  copy:
+    dest: /etc/profile.d/java-path.sh
+    content: 'PATH=$PATH:/usr/java/jdk-17/bin'
+    
